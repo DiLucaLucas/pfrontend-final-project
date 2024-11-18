@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import LoginView from './views/LoginView.vue';
+// import HomeView from './views/HomeView.vue';
+
+</script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <div>
+    <LoginView />
+  </div>
 </template>
 
 <style scoped></style>
