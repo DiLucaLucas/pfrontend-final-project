@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import LoginComponent from "@/components/LoginComponent.vue";
 import RegisterComponent from "@/components/RegisterComponent.vue";
 
-// Estado para alternar entre componentes
+  // Estado para alternar entre componentes
 const isLogin = ref(true);
 
 const switchToLogin = () => (isLogin.value = true);
@@ -19,10 +19,10 @@ const currentComponent = computed(() =>
   <div
     class="min-h-screen bg-almost-black flex flex-col items-center justify-center text-white"
   >
-    <div class="w-full max-w-md p-6 bg-almost-dark rounded-md shadow-md">
-      <div class="flex justify-between mb-6">
+    <div class="w-full max-w-md p-6 bg-almost-dark rounded-md">
+      <div class="flex justify-between">
         <button
-          class="px-4 py-2 w-full text-center font-bold rounded-md transition-colors"
+          class="mr-2 px-4 py-2 w-full text-center font-bold rounded-md transition-colors"
           :class="
             isLogin
               ? 'bg-primary-green text-black'
