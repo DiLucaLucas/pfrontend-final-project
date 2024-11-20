@@ -19,16 +19,16 @@ const removeTask = (index: number) => {
 };
 </script>
 <template>
-  <div class="h-screen bg-almost-black flex justify-center mt-10 mb-10" >
+  <div class="bg-almost-black flex justify-center my-20" >
     <div class="w-full max-w-md p-6 bg-background-gray rounded-lg shadow-lg">
     <h1 class="text-2xl text-success-green font-bold mb-4 text-center">Mis Tareas</h1>
     <div class="w-full flex flex-col gap-4 mb-6">
       <div class="flex justify-center">
         <input
           type="text"
+          class="w-full p-3 m-2 rounded-md text-almost-black shadow-white font-bold"
           v-model="newTask"
           placeholder="Nueva tarea...."
-          class="w-full p-3 m-2 rounded-md text-almost-black shadow-white font-bold"
         />
         <button
           @click="addTask"

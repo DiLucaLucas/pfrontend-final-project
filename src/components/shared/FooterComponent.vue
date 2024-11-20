@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
   <footer
-    class="bg-background-gray w-full text-gray-400 text-center p-6 absolute"
+    class="bg-background-gray w-full text-gray-400 text-center p-6"
   >
     <h3>
       Desarrollado por<span>Jeronimo Huincaman</span> &
