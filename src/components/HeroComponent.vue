@@ -1,35 +1,45 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+
 //Importamos store de auth
 import { useSesionStore } from "@/stores/auth_session.store";
+
 // Importamos store de tarea
 import { useTareaStore } from "@/stores/tarea.store";
+
 // Importamos modelo de tarea
 import type { Tarea } from "@/models/Tarea";
+
 // Instanciamos el store de auth
 const sesionStore = useSesionStore();
 const auth = reactive(sesionStore);
+
 // Instanciamos el store de tareas
 const tareaStore = useTareaStore();
 const tareaSt = reactive(tareaStore);
+
 const nueva_tarea: Tarea = {
   id: 0,
   tarea: "",
   completada: false,
 };
+
 const tarea_reactiva = reactive(nueva_tarea);
+
 function completarTarea() {
   tarea_reactiva.completada = !tarea_reactiva.completada;
 }
+
 function guardarTarea() {
   tareaSt.agregarTarea(tarea_reactiva);
 }
+
 function eliminarTarea(tarea: Tarea) {
   tareaSt.eliminarTarea(tarea);
 }
+
 // Listamos las tareas
 tareaSt.getTareas();
-
 </script>
 <template>
   <div class="bg-almost-black flex justify-center mt-10 mb-10">
