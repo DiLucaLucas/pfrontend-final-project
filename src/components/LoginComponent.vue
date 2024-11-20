@@ -1,12 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+// Importamos reactive, nuestro store y nuestro modelo de credenciales
+import { reactive } from 'vue';
+import { useSesionStore } from '@/stores/auth_session.store'
+import type { CredencialesModel } from '@/models/credencial.model';
 
-const email = ref('');
-const password = ref('');
+// Instanciamos el store y lo volvemos reactivo
+const authStore = useSesionStore();
+const auth = reactive(authStore);
 
-const onLogin = () => {
-  console.log('Iniciar sesión');
+// Creamos una constante con nuestro modelo de credenciales.
+const credenciales : CredencialesModel = {
+  email: '',
+  password: '',
 };
+
+// La volvemos reactiva.
+const credencialesReactivas = reactive(credenciales);
+
+// Solicitamos nuestro token a la api
+auth.cambiarEstadoToken()
+
+// Función de Login
+async function Login() {
+  return auth.login(credenciales)
+}
 
 </script>
 <template>
@@ -16,9 +33,11 @@ const onLogin = () => {
       <p class="text-center text-text-gray mb-8 text-md font-semibold mt-2">
           Inicia sesión para acceder a tu cuenta. 🔑
         </p>
-      <form @submit.prevent="onLogin">
-        <input type="email" placeholder="Correo Electronico" v-model="email" class="w-full px-4 py-3 mb-6 text-input-gray bg-almost-black rounded-md focus:outline-none focus:ring focus:ring-secondary-blue">
-        <input type="password" placeholder="Contraseña" v-model="password" class="w-full px-4 py-3 mb-8 text-input-gray bg-almost-black rounded-md focus:outline-none focus:ring focus:ring-secondary-blue">
+        <!-- Escucha evento Submit y se dispara la función -->
+      <form @submit.prevent="Login()" action="#">
+        <!-- Referenciamos el email y password con nuestras credenciales -->
+        <input type="email" v-model="credencialesReactivas.email" placeholder="Correo Electronico" class="w-full px-4 py-3 mb-6 text-input-gray bg-almost-black rounded-md focus:outline-none focus:ring focus:ring-secondary-blue">
+        <input type="password" v-model="credencialesReactivas.password" placeholder="Contraseña" class="w-full px-4 py-3 mb-8 text-input-gray bg-almost-black rounded-md focus:outline-none focus:ring focus:ring-secondary-blue">
         <button type="submit" class="w-full py-3 mb-6 text-white bg-success-green font-bold rounded-md hover:bg-primary-green hover:text-gray-950 transition-colors">Ingresar 🔐</button>
       </form>
     </div>
